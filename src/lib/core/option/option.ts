@@ -49,7 +49,7 @@ export interface MatOptionParentComponent {
  * Injection token used to provide the parent component to options.
  */
 export const MAT_OPTION_PARENT_COMPONENT =
-    new InjectionToken<MatOptionParentComponent>('MAT_OPTION_PARENT_COMPONENT');
+  new InjectionToken<MatOptionParentComponent>('MAT_OPTION_PARENT_COMPONENT');
 
 /**
  * Single option inside of a `<mat-select>` element.
@@ -87,7 +87,10 @@ export class MatOption {
   get multiple() { return this._parent && this._parent.multiple; }
 
   /** The unique ID of the option. */
+  @Input()
   get id(): string { return this._id; }
+  set id(value: string) { this._id = value || this._id; }
+
 
   /** Whether or not the option is currently selected. */
   get selected(): boolean { return this._selected; }
@@ -227,7 +230,7 @@ export class MatOption {
    * @param optionGroups Flat list of all of the option groups.
    */
   static countGroupLabelsBeforeOption(optionIndex: number, options: QueryList<MatOption>,
-    optionGroups: QueryList<MatOptgroup>): number {
+                                      optionGroups: QueryList<MatOptgroup>): number {
 
     if (optionGroups.length) {
       let optionsArray = options.toArray();
